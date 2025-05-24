@@ -4,104 +4,133 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Welcome to Sajin Geo's personal site" />
-  <title>Sajin George – Software Engineer</title>
+  <title>Welcome | Sajin Geo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Basic Reset */
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #0f172a, #1e293b, #3b0764, #111827);
+      background-size: 600% 600%;
+      animation: gradientShift 30s ease infinite;
+      color: #f1f5f9;
     }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc;
-      color: #1f2937;
-      line-height: 1.6;
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .container {
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background-color: #111827;
-      color: white;
-      padding: 2rem;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.125rem;
-      color: #9ca3af;
-    }
-
-    main {
+      height: 100%;
       padding: 2rem;
-      flex: 1;
-      max-width: 800px;
-      margin: auto;
     }
 
-    .highlight {
-      background-color: #e0f2fe;
-      border-left: 4px solid #3b82f6;
-      padding: 1rem;
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #facc15, #f59e0b);
+      box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
+      margin-bottom: 2rem;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0.5rem 0;
+      color: #fbbf24;
+    }
+
+    h2 {
+      font-weight: 400;
+      color: #cbd5e1;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      background-color: #4f46e5;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
       border-radius: 0.5rem;
-      margin-top: 2rem;
-    }
-
-    .highlight a {
-      color: #2563eb;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
       text-decoration: none;
-      font-weight: 600;
+      display: inline-block;
     }
 
-    .highlight a:hover {
+    .btn:hover {
+      background-color: #6366f1;
+    }
+
+    .project {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .project a {
+      color: #93c5fd;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .project a:hover {
       text-decoration: underline;
     }
 
     footer {
+      position: absolute;
+      bottom: 1rem;
+      width: 100%;
       text-align: center;
-      padding: 1.5rem;
-      background-color: #f1f5f9;
-      color: #6b7280;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
+      font-size: 0.9rem;
+      color: #9ca3af;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Sajin George</h1>
-    <p>Software Engineer · Creator · Builder</p>
-  </header>
-
-  <main>
-    <p>Welcome! This is my digital home on the internet.</p>
-
-    <p>I enjoy building web and mobile applications with clean architecture and great user experience. You’ll find links to projects, experiments, and side quests here soon.</p>
-
-    <div class="highlight">
-      🔍 Featured Project: <br />
-      <a href="https://sajingeo.github.io/seaport-parking/" target="_blank">Where to Park in Boston Seaport →</a>
-      <p>A curated list of the best parking spots in Boston’s Seaport District, complete with maps and rates.</p>
+  <div class="container">
+    <div class="avatar" title="👋 Hi, I'm Sajin!">
+      <!-- Replace this with your photo if desired -->
+      <img src="sajin.png" alt="Sajin Geo" style="width:100%; height:100%; border-radius:50%;" />
     </div>
+    <h1>Sajin George</h1>
+    <h2>Engineer · Creator · Builder of Useful Things</h2>
 
-    <p style="margin-top:2rem;">Check back soon for more updates, or connect with me on <a href="https://www.linkedin.com/in/sajingeo/" target="_blank">LinkedIn</a>.</p>
-  </main>
+    <a href="https://www.linkedin.com/in/sajingeo/" class="btn" target="_blank">Connect on LinkedIn</a>
+
+    <div class="project">
+      <p>🚗 💡 🚋 Check out my latest side projects:</p>
+      <p><a href="https://sajingeo.github.io/seaport-parking/" target="_blank">Where to Park in Seaport →</a></p>
+      <p><a href="https://github.com/sajingeo/ESP32_lazy_grid_clock/" target="_blank">Desktop clock →</a></p>
+      <p><a href="https://github.com/sajingeo/askMBTA" target="_blank">MBTA alexa skill →</a></p>
+      <p><a href="https://github.com/sajingeo/dc617badgecode" target="_blank">DC617 CTF badge →</a></p>
+    </div>
+  </div>
 
   <footer>
-    © 2025 Sajin George. Built with HTML & CSS. Hosted on GitHub Pages.
+    © 2025 Sajin George · Made with HTML, CSS & ❤️
   </footer>
 </body>
 </html>

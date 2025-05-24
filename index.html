@@ -25,15 +25,21 @@
       100% {background-position: 0% 50%;}
     }
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      height: 100%;
-      padding: 2rem;
+    .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     }
+
+    .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
 
     .avatar {
       width: 140px;
@@ -99,17 +105,17 @@
       text-decoration: underline;
     }
 
-    footer {
-      position: absolute;
-      bottom: 1rem;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #9ca3af;
-    }
+  footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: #9ca3af;
+    background: transparent;
+  }
   </style>
 </head>
 <body>
+<div class="wrapper">
   <div class="container">
     <div class="avatar" title="👋 Hi, I'm Sajin!">
       <!-- Replace this with your photo if desired -->
@@ -132,5 +138,6 @@
   <footer>
     © 2025 Sajin George · Made with HTML, CSS & ❤️
   </footer>
+</div>
 </body>
 </html>

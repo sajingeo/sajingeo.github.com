@@ -3,52 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Welcome to Sajin Geo's personal site" />
-  <title>Welcome | Sajin Geo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="description" content="Sajin George — engineer, builder, and creator of fun side projects." />
+  <title>Sajin George · Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg-1: #0a0a12;
+      --bg-2: #120a24;
+      --accent: #a78bfa;
+      --accent-2: #38bdf8;
+      --accent-3: #fbbf24;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.09);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      min-height: 100%;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
-      background: linear-gradient(-45deg, #0f172a, #1e293b, #3b0764, #111827);
-      background-size: 600% 600%;
-      animation: gradientShift 30s ease infinite;
-      color: #f1f5f9;
+      background: var(--bg-1);
+      color: var(--text);
+    }
+
+    /* ---------- Animated background ---------- */
+    #bg-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      background: linear-gradient(-45deg, #0a0a12, #1e1035, #0a1a2f, #150826);
+      background-size: 400% 400%;
+      animation: gradientShift 22s ease infinite;
     }
 
     @keyframes gradientShift {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      display: block;
+    }
+
+    .glow-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .glow-orb.one { width: 420px; height: 420px; background: var(--accent); top: -10%; left: -10%; animation: drift1 18s ease-in-out infinite; }
+    .glow-orb.two { width: 380px; height: 380px; background: var(--accent-2); bottom: -10%; right: -8%; animation: drift2 22s ease-in-out infinite; }
+    .glow-orb.three { width: 300px; height: 300px; background: var(--accent-3); top: 40%; right: 20%; animation: drift3 26s ease-in-out infinite; }
+
+    @keyframes drift1 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(60px,80px); } }
+    @keyframes drift2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-70px,-50px); } }
+    @keyframes drift3 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-40px,60px); } }
+
+    /* ---------- Layout ---------- */
     .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem;
-  }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .nav-brand {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+      opacity: 0;
+      animation: heroIn 1s ease 0.15s forwards;
+    }
+
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .avatar-ring {
+      position: relative;
+      width: 152px;
+      height: 152px;
+      margin-bottom: 1.75rem;
+    }
+
+    .avatar-ring::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+      animation: spin 6s linear infinite;
+      filter: blur(1px);
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .avatar {
-      width: 140px;
-      height: 140px;
+      position: relative;
+      width: 152px;
+      height: 152px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #facc15, #f59e0b);
-      box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
-      margin-bottom: 2rem;
-      animation: float 4s ease-in-out infinite;
+      overflow: hidden;
+      background: var(--bg-1);
+      border: 3px solid var(--bg-1);
+      animation: float 4.5s ease-in-out infinite;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     @keyframes float {
@@ -57,91 +172,449 @@
     }
 
     h1 {
-      font-size: 3rem;
-      margin: 0.5rem 0;
-      color: #fbbf24;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 3.4rem);
+      margin: 0.4rem 0 0.3rem;
+      background: linear-gradient(90deg, #fff, var(--accent), var(--accent-2), #fff);
+      background-size: 300% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shine 6s linear infinite;
     }
 
-    h2 {
-      font-weight: 400;
-      color: #cbd5e1;
-      margin-bottom: 1.5rem;
+    @keyframes shine {
+      to { background-position: 300% center; }
+    }
+
+    .tagline {
+      font-weight: 500;
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin: 0 0 1.75rem;
+      min-height: 1.6em;
+    }
+
+    .tagline .cursor {
+      display: inline-block;
+      width: 2px;
+      background: var(--accent-2);
+      margin-left: 2px;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .cta-row {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn {
-      background-color: #4f46e5;
+      position: relative;
       color: white;
       padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      font-size: 1rem;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 500;
       cursor: pointer;
-      transition: background 0.3s ease;
-      margin-top: 1rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
       text-decoration: none;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn.primary {
+      background: linear-gradient(120deg, #6d28d9, #4338ca);
+      border-color: transparent;
     }
 
     .btn:hover {
-      background-color: #6366f1;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.35);
+      border-color: rgba(255,255,255,0.25);
     }
 
-    .project {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      border-radius: 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .scroll-hint {
+      margin-top: 3rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      animation: bob 2s ease-in-out infinite;
+      opacity: 0.7;
+    }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+    /* ---------- Projects ---------- */
+    .projects {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+      width: 100%;
     }
 
-    .project a {
-      color: #93c5fd;
-      font-weight: bold;
+    .section-title {
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 2.75rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      position: relative;
+      padding: 1.6rem 1.5rem;
+      border-radius: 1.1rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
       text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: transform 0.15s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      will-change: transform;
     }
 
-    .project a:hover {
-      text-decoration: underline;
+    .project-card.visible {
+      animation: cardIn 0.6s ease forwards;
     }
 
-  footer {
-    text-align: center;
-    padding: 1rem 0;
-    font-size: 0.9rem;
-    color: #9ca3af;
-    background: transparent;
-  }
+    @keyframes cardIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(167, 139, 250, 0.16), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card:hover {
+      border-color: rgba(167, 139, 250, 0.45);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+
+    .project-icon {
+      font-size: 2rem;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      transition: transform 0.35s ease;
+    }
+
+    .project-card:hover .project-icon {
+      transform: scale(1.15) rotate(-6deg);
+    }
+
+    .project-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0 0 0.4rem;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin: 0 0 1rem;
+      line-height: 1.5;
+    }
+
+    .project-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .project-link .arrow {
+      transition: transform 0.25s ease;
+    }
+    .project-card:hover .project-link .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--card-border);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .footer-links a:hover { color: var(--accent-2); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
   </style>
 </head>
 <body>
+<div id="bg-gradient"></div>
+<canvas id="particles"></canvas>
+<div class="glow-orb one"></div>
+<div class="glow-orb two"></div>
+<div class="glow-orb three"></div>
+
 <div class="wrapper">
-  <div class="container">
-    <div class="avatar" title="👋 Hi, I'm Sajin!">
-      <!-- Replace this with your photo if desired -->
-      <img src="sajin.png" alt="Sajin Geo" style="width:100%; height:100%; border-radius:50%;" />
+  <nav>
+    <a href="#top" class="nav-brand">sajin.dev</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="https://www.linkedin.com/in/sajingeo/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/sajingeo" target="_blank" rel="noopener">GitHub</a>
     </div>
+  </nav>
+
+  <section class="hero" id="top">
+    <div class="avatar-ring">
+      <div class="avatar" title="👋 Hi, I'm Sajin!">
+        <img src="sajin.png" alt="Sajin Geo" />
+      </div>
+    </div>
+
     <h1>Sajin George</h1>
-    <h2>Engineer · Creator · Builder of Useful Things</h2>
+    <p class="tagline"><span id="typewriter"></span><span class="cursor">&nbsp;</span></p>
 
-    <a href="https://www.linkedin.com/in/sajingeo/" class="btn" target="_blank">Connect on LinkedIn</a>
-
-    <div class="project">
-      <p>🚗 💡 🚋 Check out my latest side projects:</p>
-	  <p><a href="https://sajingeo.github.io/tesfifa/" target="_blank">⚽ FIFA Tracker ⚽ →</a></p>
-	  <p><a href="https://sajingeo.github.io/HackBox/" target="_blank">Hmmm ?? →</a></p>
-	  <p><a href="https://sajingeo.github.io/now/" target="_blank">Where to sajin now?? →</a></p>
-	  <p><a href="https://sajingeo.github.io/gameboy" target="_blank">Some web games →</a></p>
-      <p><a href="https://sajingeo.github.io/seaport-parking/" target="_blank">Where to Park in Seaport →</a></p>
-      <p><a href="https://github.com/sajingeo/ESP32_lazy_grid_clock/" target="_blank">Desktop clock →</a></p>
-      <p><a href="https://github.com/sajingeo/askMBTA" target="_blank">MBTA alexa skill →</a></p>
-      <p><a href="https://github.com/sajingeo/dc617badgecode" target="_blank">DC617 CTF badge →</a></p>
+    <div class="cta-row">
+      <a href="#projects" class="btn primary">🚀 See the Projects</a>
+      <a href="https://www.linkedin.com/in/sajingeo/" class="btn" target="_blank" rel="noopener">💼 Connect on LinkedIn</a>
+      <a href="https://github.com/sajingeo" class="btn" target="_blank" rel="noopener">🐙 GitHub</a>
     </div>
-  </div>
+
+    <div class="scroll-hint">
+      <span>scroll for the fun stuff</span>
+      <span>↓</span>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2 class="section-title">🎨 Fun Side Projects</h2>
+    <p class="section-sub">Things I've built for fun, curiosity, or because I couldn't stop myself.</p>
+
+    <div class="project-grid">
+      <a class="project-card" href="https://sajingeo.github.io/tesfifa/" target="_blank" rel="noopener">
+        <span class="project-icon">⚽</span>
+        <h3 class="project-title">FIFA Tracker</h3>
+        <p class="project-desc">Tracking FIFA match stats and bragging rights.</p>
+        <span class="project-link">Check it out <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/HackBox/" target="_blank" rel="noopener">
+        <span class="project-icon">📦</span>
+        <h3 class="project-title">HackBox</h3>
+        <p class="project-desc">A collection of quick hacks and experiments. Hmmm...</p>
+        <span class="project-link">Explore <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/now/" target="_blank" rel="noopener">
+        <span class="project-icon">📍</span>
+        <h3 class="project-title">Where's Sajin Now?</h3>
+        <p class="project-desc">A tiny "now page" answering the eternal question.</p>
+        <span class="project-link">Find out <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/gameboy" target="_blank" rel="noopener">
+        <span class="project-icon">🎮</span>
+        <h3 class="project-title">Web Games</h3>
+        <p class="project-desc">Retro-inspired browser games, built for fun.</p>
+        <span class="project-link">Play now <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/seaport-parking/" target="_blank" rel="noopener">
+        <span class="project-icon">🚗</span>
+        <h3 class="project-title">Seaport Parking</h3>
+        <p class="project-desc">Helping Bostonians find a spot in the Seaport.</p>
+        <span class="project-link">Find parking <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/ESP32_lazy_grid_clock/" target="_blank" rel="noopener">
+        <span class="project-icon">🕒</span>
+        <h3 class="project-title">ESP32 Lazy Grid Clock</h3>
+        <p class="project-desc">A DIY desktop clock powered by an ESP32.</p>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/askMBTA" target="_blank" rel="noopener">
+        <span class="project-icon">🚋</span>
+        <h3 class="project-title">askMBTA</h3>
+        <p class="project-desc">An Alexa skill for real-time MBTA transit info.</p>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/dc617badgecode" target="_blank" rel="noopener">
+        <span class="project-icon">🛡️</span>
+        <h3 class="project-title">DC617 CTF Badge</h3>
+        <p class="project-desc">Firmware for the DC617 hacker con badge.</p>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </section>
 
   <footer>
-    © 2025 Sajin George · Made with HTML, CSS & ❤️
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/sajingeo/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/sajingeo" target="_blank" rel="noopener">GitHub</a>
+      <a href="privacypolicy.html">Privacy Policy</a>
+    </div>
+    © 2026 Sajin George · Built with HTML, CSS & a little too much ☕
   </footer>
 </div>
+
+<script>
+  // ----- Typewriter effect -----
+  const phrases = ["Engineer.", "Creator.", "Builder of useful (and useless) things.", "Side-project addict."];
+  const typewriterEl = document.getElementById('typewriter');
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+
+  function typeTick() {
+    const current = phrases[phraseIdx];
+    if (!deleting) {
+      charIdx++;
+      typewriterEl.textContent = current.slice(0, charIdx);
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(typeTick, 1400);
+        return;
+      }
+    } else {
+      charIdx--;
+      typewriterEl.textContent = current.slice(0, charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+      }
+    }
+    setTimeout(typeTick, deleting ? 35 : 65);
+  }
+  typeTick();
+
+  // ----- Scroll reveal for project cards -----
+  const cards = document.querySelectorAll('.project-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = Array.from(cards).indexOf(el) % 4 * 80;
+        setTimeout(() => el.classList.add('visible'), delay);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15 });
+  cards.forEach(c => observer.observe(c));
+
+  // ----- Card spotlight + tilt on mouse move -----
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mx', x + 'px');
+      card.style.setProperty('--my', y + 'px');
+      const rx = ((y / rect.height) - 0.5) * -6;
+      const ry = ((x / rect.width) - 0.5) * 6;
+      card.style.transform = `perspective(600px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
+  // ----- Lightweight particle background -----
+  (function () {
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let particles = [];
+    let w, h;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const count = Math.min(70, Math.floor((w * h) / 18000));
+    const colors = ['#a78bfa', '#38bdf8', '#fbbf24'];
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.6 + 0.4,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: Math.random() * 0.5 + 0.2
+      });
+    }
+
+    function step() {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+      if (!reduceMotion) requestAnimationFrame(step);
+    }
+    step();
+  })();
+</script>
 </body>
 </html>

@@ -364,6 +364,56 @@
       transform: translateX(4px);
     }
 
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0 0 1rem;
+    }
+
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+    }
+
+    /* ---------- Category filter ---------- */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+      transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+    }
+    .filter-btn:hover { color: var(--text); transform: translateY(-2px); }
+    .filter-btn.active {
+      color: #fff;
+      border-color: transparent;
+      background: linear-gradient(120deg, #6d28d9, #4338ca);
+    }
+
+    .project-card.filtered-out {
+      display: none;
+    }
+
     /* ---------- Footer ---------- */
     footer {
       text-align: center;
@@ -439,60 +489,166 @@
     <h2 class="section-title">🎨 Fun Side Projects</h2>
     <p class="section-sub">Things I've built for fun, curiosity, or because I couldn't stop myself.</p>
 
+    <div class="filter-row" id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web</button>
+      <button class="filter-btn" data-filter="hardware">Hardware</button>
+      <button class="filter-btn" data-filter="ai">AI</button>
+      <button class="filter-btn" data-filter="tools">Tools</button>
+    </div>
+
     <div class="project-grid">
-      <a class="project-card" href="https://sajingeo.github.io/tesfifa/" target="_blank" rel="noopener">
-        <span class="project-icon">⚽</span>
-        <h3 class="project-title">FIFA Tracker</h3>
-        <p class="project-desc">Tracking FIFA match stats and bragging rights.</p>
+      <!-- New -->
+      <a class="project-card" href="https://sajingeo.github.io/printerbot/" target="_blank" rel="noopener" data-cat="web hardware">
+        <span class="project-icon">🖨️</span>
+        <h3 class="project-title">PrinterBot</h3>
+        <p class="project-desc">Party games that spit out tickets from a Bluetooth thermal printer. Tap, play, print.</p>
+        <div class="project-tags"><span class="tag">Web Bluetooth</span><span class="tag">JavaScript</span></div>
+        <span class="project-link">Play it <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/capsule-radar/" target="_blank" rel="noopener" data-cat="hardware">
+        <span class="project-icon">🛩️</span>
+        <h3 class="project-title">Capsule Radar</h3>
+        <p class="project-desc">Live ADS-B aircraft radar on a round ESP32 screen, with a Dragon Ball "Dragon Radar" skin.</p>
+        <div class="project-tags"><span class="tag">ESP32-S3</span><span class="tag">ADS-B</span></div>
         <span class="project-link">Check it out <span class="arrow">→</span></span>
       </a>
 
-      <a class="project-card" href="https://sajingeo.github.io/HackBox/" target="_blank" rel="noopener">
+      <a class="project-card" href="https://sajingeo.github.io/blethermal/" target="_blank" rel="noopener" data-cat="web hardware">
+        <span class="project-icon">🧾</span>
+        <h3 class="project-title">BLE Thermal</h3>
+        <p class="project-desc">A browser controller for the AH-M2 thermal printer — protocol reverse-engineered from scratch.</p>
+        <div class="project-tags"><span class="tag">Web Bluetooth</span><span class="tag">Reverse Eng</span></div>
+        <span class="project-link">Check it out <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/claude-status" target="_blank" rel="noopener" data-cat="hardware ai">
+        <span class="project-icon">🤖</span>
+        <h3 class="project-title">Claude Status</h3>
+        <p class="project-desc">An animated ESP32 desk display that shows what Claude Code is doing and chimes when it's done.</p>
+        <div class="project-tags"><span class="tag">ESP32-S3</span><span class="tag">AMOLED</span></div>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/flipperdashboard" target="_blank" rel="noopener" data-cat="tools hardware">
+        <span class="project-icon">🐬</span>
+        <h3 class="project-title">Flipper Dashboard</h3>
+        <p class="project-desc">A local web dashboard for driving a Flipper Zero + GhostESP for authorized WiFi recon.</p>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Flipper Zero</span></div>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/TeslaChargeAlarm" target="_blank" rel="noopener" data-cat="tools">
+        <span class="project-icon">🔋</span>
+        <h3 class="project-title">Tesla Charge Alarm</h3>
+        <p class="project-desc">A Mac menu bar app that pings your phone when your Tesla hits its target charge.</p>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Fleet API</span></div>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/mac-agents" target="_blank" rel="noopener" data-cat="tools">
+        <span class="project-icon">⏱️</span>
+        <h3 class="project-title">Mac Agents</h3>
+        <p class="project-desc">A menu bar app to schedule and run scripts with live countdowns and notifications.</p>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">rumps</span></div>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/espflighttracker" target="_blank" rel="noopener" data-cat="hardware">
+        <span class="project-icon">✈️</span>
+        <h3 class="project-title">ESP Flight Tracker</h3>
+        <p class="project-desc">A touchscreen ESP32 clock that tracks flights overhead and shows the weather.</p>
+        <div class="project-tags"><span class="tag">ESP32</span><span class="tag">TFT</span></div>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://github.com/sajingeo/benchpi" target="_blank" rel="noopener" data-cat="tools hardware">
+        <span class="project-icon">🛠️</span>
+        <h3 class="project-title">BenchPi</h3>
+        <p class="project-desc">One script turns a Raspberry Pi into an embedded-systems bench host for you and your agents.</p>
+        <div class="project-tags"><span class="tag">Shell</span><span class="tag">Embedded</span></div>
+        <span class="project-link">View on GitHub <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/aibostonparking/" target="_blank" rel="noopener" data-cat="web ai">
+        <span class="project-icon">🅿️</span>
+        <h3 class="project-title">AI Boston Parking</h3>
+        <p class="project-desc">An AI-assisted guide to finding parking around Boston.</p>
+        <div class="project-tags"><span class="tag">Web</span><span class="tag">AI</span></div>
+        <span class="project-link">Check it out <span class="arrow">→</span></span>
+      </a>
+
+      <!-- Originals -->
+      <a class="project-card" href="https://sajingeo.github.io/tesfifa/" target="_blank" rel="noopener" data-cat="web">
+        <span class="project-icon">⚽</span>
+        <h3 class="project-title">World Cup Live</h3>
+        <p class="project-desc">A live World Cup match tracker built for the Tesla in-car browser. Dark, big, touch-friendly.</p>
+        <div class="project-tags"><span class="tag">Web</span><span class="tag">Tesla</span></div>
+        <span class="project-link">Check it out <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/HackBox/" target="_blank" rel="noopener" data-cat="web">
         <span class="project-icon">📦</span>
         <h3 class="project-title">HackBox</h3>
         <p class="project-desc">A collection of quick hacks and experiments. Hmmm...</p>
+        <div class="project-tags"><span class="tag">Web</span><span class="tag">Experiments</span></div>
         <span class="project-link">Explore <span class="arrow">→</span></span>
       </a>
 
-      <a class="project-card" href="https://sajingeo.github.io/now/" target="_blank" rel="noopener">
+      <a class="project-card" href="https://sajingeo.github.io/now/" target="_blank" rel="noopener" data-cat="web">
         <span class="project-icon">📍</span>
         <h3 class="project-title">Where's Sajin Now?</h3>
         <p class="project-desc">A tiny "now page" answering the eternal question.</p>
+        <div class="project-tags"><span class="tag">Web</span></div>
         <span class="project-link">Find out <span class="arrow">→</span></span>
       </a>
 
-      <a class="project-card" href="https://sajingeo.github.io/gameboy" target="_blank" rel="noopener">
+      <a class="project-card" href="https://sajingeo.github.io/gameboy" target="_blank" rel="noopener" data-cat="web">
         <span class="project-icon">🎮</span>
         <h3 class="project-title">Web Games</h3>
         <p class="project-desc">Retro-inspired browser games, built for fun.</p>
+        <div class="project-tags"><span class="tag">Web</span><span class="tag">Games</span></div>
         <span class="project-link">Play now <span class="arrow">→</span></span>
       </a>
 
-      <a class="project-card" href="https://sajingeo.github.io/seaport-parking/" target="_blank" rel="noopener">
+      <a class="project-card" href="https://sajingeo.github.io/namepicker/" target="_blank" rel="noopener" data-cat="web tools">
+        <span class="project-icon">🎲</span>
+        <h3 class="project-title">Name Picker</h3>
+        <p class="project-desc">A random name picker and a simple timer. Great for standups and classrooms.</p>
+        <div class="project-tags"><span class="tag">Web</span></div>
+        <span class="project-link">Try it <span class="arrow">→</span></span>
+      </a>
+
+      <a class="project-card" href="https://sajingeo.github.io/seaport-parking/" target="_blank" rel="noopener" data-cat="web">
         <span class="project-icon">🚗</span>
         <h3 class="project-title">Seaport Parking</h3>
         <p class="project-desc">Helping Bostonians find a spot in the Seaport.</p>
+        <div class="project-tags"><span class="tag">Web</span><span class="tag">Boston</span></div>
         <span class="project-link">Find parking <span class="arrow">→</span></span>
       </a>
 
-      <a class="project-card" href="https://github.com/sajingeo/ESP32_lazy_grid_clock/" target="_blank" rel="noopener">
+      <a class="project-card" href="https://github.com/sajingeo/ESP32_lazy_grid_clock/" target="_blank" rel="noopener" data-cat="hardware">
         <span class="project-icon">🕒</span>
         <h3 class="project-title">ESP32 Lazy Grid Clock</h3>
         <p class="project-desc">A DIY desktop clock powered by an ESP32.</p>
+        <div class="project-tags"><span class="tag">ESP32</span><span class="tag">C++</span></div>
         <span class="project-link">View on GitHub <span class="arrow">→</span></span>
       </a>
 
-      <a class="project-card" href="https://github.com/sajingeo/askMBTA" target="_blank" rel="noopener">
+      <a class="project-card" href="https://github.com/sajingeo/askMBTA" target="_blank" rel="noopener" data-cat="tools">
         <span class="project-icon">🚋</span>
         <h3 class="project-title">askMBTA</h3>
         <p class="project-desc">An Alexa skill for real-time MBTA transit info.</p>
+        <div class="project-tags"><span class="tag">Python</span><span class="tag">Alexa</span></div>
         <span class="project-link">View on GitHub <span class="arrow">→</span></span>
       </a>
 
-      <a class="project-card" href="https://github.com/sajingeo/dc617badgecode" target="_blank" rel="noopener">
+      <a class="project-card" href="https://github.com/sajingeo/dc617badgecode" target="_blank" rel="noopener" data-cat="hardware">
         <span class="project-icon">🛡️</span>
         <h3 class="project-title">DC617 CTF Badge</h3>
         <p class="project-desc">Firmware for the DC617 hacker con badge.</p>
+        <div class="project-tags"><span class="tag">C++</span><span class="tag">Firmware</span></div>
         <span class="project-link">View on GitHub <span class="arrow">→</span></span>
       </a>
     </div>
@@ -535,6 +691,22 @@
     setTimeout(typeTick, deleting ? 35 : 65);
   }
   typeTick();
+
+  // ----- Category filter -----
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const allCards = document.querySelectorAll('.project-card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      allCards.forEach(card => {
+        const cats = card.dataset.cat || '';
+        const show = f === 'all' || cats.split(' ').includes(f);
+        card.classList.toggle('filtered-out', !show);
+      });
+    });
+  });
 
   // ----- Scroll reveal for project cards -----
   const cards = document.querySelectorAll('.project-card');
